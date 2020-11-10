@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timer</title>
+
+</head>
+
+<body>
+    <style type="text/css">
+        #line {
+            display: none;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100%;
+        }
+
+        .clock {
+            text-align: center;
+            padding: 5px;
+            height: 50%;
+            width: auto;
+            border: solid 1px;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <div class="container">
+        <div class="clock">
+            <form id="form" >
+                <input type='number' min='5' max='100' required id="input"/>
+                <input type='submit' >
+
+            </form>
+            <h1 id="line">Count Down Begins</h1>
+            <h1 id="time"></h1>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    let line = document.getElementById('line');
+    let heading = document.getElementById("time");
+  let input = document.getElementById('input');  
+ let form = document.getElementById('form');
+  let id;
+form.addEventListener('submit',(e)=>{
+let x = parseInt(input.value);
+  let min = Math.floor(x/60);
+  let sec = x%60;
+  
+       e.preventDefault();
+      
+        line.style.display = 'block';
+
+        //clearInterval(id);
+        id = setInterval(() => {
+            if (min >= 0 && sec>=0 ) {
+                heading.innerHTML = `${min}:${sec}`;
+                sec--;
+            }
+          if(sec==0 && min>=1)
+          {min--;
+          sec=59;
+          };
+        }, 1000);
+    });
+</script></html>
